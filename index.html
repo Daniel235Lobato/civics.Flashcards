@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlashCards</title>
+    <link rel="stylesheet" href="output.css" />
+  </head>
+  <body
+    class="mb-0 mt-0 h-100vh w-100vw bg-gradient-to-r from-red-500 via-white to-blue-500"
+  >
+    <div class="grid grid-cols-1 mt-9">
+      <div>
+        <h1 class="flex items-center justify-center font-bold text-3xl">
+          Free Civis Flashcards
+        </h1>
+        <br />
+      </div>
+      <div class="flex items-center justify-center mb-0.5 font-light">
+        <h2 class="">U.S. Citizenship Test Study Guide</h2>
+      </div>
+      <br class="" />
+      <div class="grid grid-cols-1 place-items-center">
+        <img
+          id="welcomeCardImage"
+          src="images/startImage.png"
+          alt="Flashcard"
+          class="h-70 w-95"
+        />
+        <img
+          id="cardImage"
+          src=""
+          alt="Flashcard"
+          class="object-contain hidden h-70 w-100"
+        />
+      </div>
+
+      <div class="flex justify-center mt-5">
+        <button
+          id="previousButton"
+          class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mr-4"
+        >
+          Previous
+        </button>
+
+        <button
+          id="nextButton"
+          class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ml-4"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
