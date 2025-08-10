@@ -209,25 +209,30 @@ document.addEventListener("DOMContentLoaded", function () {
     "images/flashcard_100_Q.jpg",
   ];
 
+  let face = "Question";
+
   const cardImage = document.getElementById("cardImage");
   const nextButton = document.getElementById("nextButton");
   const welcomeCard = document.getElementById("welcomeCardImage");
   const previousButton = document.getElementById("previousButton");
-
+  const speakButton = document.getElementById("speakButton");
 
   nextButton.addEventListener("click", function () {
     nextButtonCount++;
     cardImage.src = cardsQuestion[nextButtonCount];
     welcomeCard.remove();
     cardImage.classList.remove("hidden");
+    face = "Question";
   });
 
   cardImage.addEventListener("click", function () {
     imageClickCount++;
     if (imageClickCount % 2 === 0) {
       cardImage.src = cardsQuestion[nextButtonCount];
+      face = "Question";
     } else {
       cardImage.src = cardsAnswer[nextButtonCount];
+      face = "Answer";
     }
   });
 
@@ -235,8 +240,24 @@ document.addEventListener("DOMContentLoaded", function () {
     if (nextButtonCount > 0) {
       nextButtonCount--;
       cardImage.src = cardsQuestion[nextButtonCount];
+      face = "Question";
     } else {
       console.log("Already at the first question. Can't go back further.");
     }
+  });
+
+  speakButton.addEventListener("click", function () {
+    if (face === "Answer") {
+      const sound = new Audio(
+        `./audioFiles/q${nextButtonCount + 1}.Answer.mp3`
+      );
+      sound.play();
+    } else if (face === "Question") {
+      const sound = new Audio(
+        `./audioFiles/q${nextButtonCount + 1}.Question.mp3`
+      );
+      sound.play();
+    }
+    console.log(face);
   });
 });
