@@ -225,7 +225,8 @@ document.addEventListener("DOMContentLoaded", function () {
     cardImage.src = cardsQuestion[nextButtonCount];
     welcomeCard.classList.add("hidden");
     cardImage.classList.remove("hidden");
-    speakImageButton.classList.remove("hidden");
+    speakButton.classList.remove("hidden");
+    previousButton.classList.add("ml-10");
     face = "Question";
     console.log(nextButtonCount);
     if (nextButtonCount >= 100) {
@@ -283,5 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
     previousButton.classList.remove("hidden");
     speakButton.classList.remove("hidden");
     startOverCardImage.classList.add("hidden");
+    speakButton.classList.add("hidden");
+    previousButton.classList.remove("ml-10");
   });
 });
