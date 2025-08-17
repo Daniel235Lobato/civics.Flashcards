@@ -218,12 +218,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const welcomeCard = document.getElementById("welcomeCardImage");
   const previousButton = document.getElementById("previousButton");
   const speakButton = document.getElementById("speakButton");
+  const speakImageButton = document.getElementById("speakImageButton");
 
   nextButton.addEventListener("click", function () {
     nextButtonCount++;
     cardImage.src = cardsQuestion[nextButtonCount];
     welcomeCard.classList.add("hidden");
     cardImage.classList.remove("hidden");
+    speakImageButton.classList.remove("hidden")
     face = "Question";
     console.log(nextButtonCount);
     if (nextButtonCount >= 100) {
