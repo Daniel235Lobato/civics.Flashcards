@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cardImage.src = cardsQuestion[nextButtonCount];
     welcomeCard.classList.add("hidden");
     cardImage.classList.remove("hidden");
-    speakImageButton.classList.remove("hidden")
+    speakImageButton.classList.remove("hidden");
     face = "Question";
     console.log(nextButtonCount);
     if (nextButtonCount >= 100) {
@@ -233,8 +233,8 @@ document.addEventListener("DOMContentLoaded", function () {
       nextButton.classList.add("hidden");
       previousButton.classList.add("hidden");
       speakButton.classList.add("hidden");
-      startOverCardImage.classList.remove("hidden")
-      cardImage.classList.add("hidden")
+      startOverCardImage.classList.remove("hidden");
+      cardImage.classList.add("hidden");
     }
   });
 
@@ -276,12 +276,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   startOver.addEventListener("click", function () {
     nextButtonCount = -1;
-    welcomeCard.classList.remove("hidden")
-    cardImage.classList.add("hidden")
-    startOver.classList.add("hidden")
-    nextButton.classList.remove("hidden")
-    previousButton.classList.remove("hidden")
-    speakButton.classList.remove("hidden")
-    startOverCardImage.classList.add("hidden")
+    welcomeCard.classList.remove("hidden");
+    cardImage.classList.add("hidden");
+    startOver.classList.add("hidden");
+    nextButton.classList.remove("hidden");
+    previousButton.classList.remove("hidden");
+    speakButton.classList.remove("hidden");
+    startOverCardImage.classList.add("hidden");
   });
 });
