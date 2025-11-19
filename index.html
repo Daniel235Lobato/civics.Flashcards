@@ -2,75 +2,177 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>FlashCards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="output.css" />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
   </head>
-  <body
-    class="mb-0 mt-0 h-100vh w-100vw bg-gradient-to-r from-red-500 via-white to-blue-500"
-  >
-    <div class="grid grid-cols-1 mt-9">
-      <div>
-        <h1 class="flex items-center justify-center font-bold text-3xl">
-          Free Civics Flashcards
+  <body class="min-h-screen w-full bg-slate-50 flex items-center justify-center p-4">
+    
+    <!-- Main Card Container -->
+    <div class="w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
+      
+      <!-- Header Section -->
+      <div class="bg-gradient-to-r from-blue-700 to-blue-900 p-6 text-center relative">
+        <h1 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-2">
+          Civics Flashcards
         </h1>
-        <br />
-      </div>
-      <div class="flex items-center justify-center mb-0.5 font-light">
-        <h2 class="">U.S. Citizenship Test Study Guide</h2>
-      </div>
-      <br class="" />
-      <div class="flex justify-center">
-        <img
-          id="welcomeCardImage"
-          src="images/startImage.png"
-          alt="Flashcard"
-          class="h-70 w-95"
-        />
-        <img
-          id="cardImage"
-          src=""
-          alt="Flashcard"
-          class="object-contain hidden h-70 w-100"
-        />
+        <h2 class="text-blue-100 font-light text-lg mb-4">
+          U.S. Citizenship Test Study Guide
+        </h2>
+        
 
-        <img
-          id="startOverCardImage"
-          src="images/startOverImage.png"
-          alt="Flashcard"
-          class="object-contain hidden h-70 w-100"
-        />
       </div>
 
-      <div class="flex justify-center mt-5">
-        <button
-          id="previousButton"
-          class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mr-7"
-        >
-          Previous
-        </button>
+      <!-- Content Section -->
+      <div class="p-8 flex flex-col items-center">
+        
+        <!-- Flashcard Area -->
+        <div class="relative w-full max-w-lg aspect-[4/3] flex items-center justify-center bg-slate-50 rounded-xl border-2 border-slate-100 shadow-inner mb-8 overflow-hidden group">
+          <img
+            id="welcomeCardImage"
+            src="images/startImage.png"
+            alt="Welcome to Flashcards"
+            class="object-contain w-full h-full p-4 transition-transform duration-300 group-hover:scale-105"
+          />
+          <img
+            id="cardImage"
+            src=""
+            alt="Flashcard Question/Answer"
+            class="object-contain w-full h-full p-4 hidden transition-transform duration-300"
+          />
+          
+          <img
+            id="startOverCardImage"
+            src="images/startOverImage.png"
+            alt="Start Over"
+            class="object-contain w-full h-full p-4 hidden"
+          />
+        </div>
 
-        <button
-          id="nextButton"
-          class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 "
-        >
-          Next
-        </button>
+        <!-- State Selection and Answer Area -->
+        <div class="w-full max-w-lg mb-8 flex flex-col items-center gap-4">
+          <!-- State Selector -->
+          <div id="stateSelectorContainer" class="hidden w-full max-w-xs">
+            <select id="stateSelector" class="w-full px-4 py-2 rounded-lg text-slate-700 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-md border border-slate-200 cursor-pointer">
+              <option value="" disabled selected>Select Your State</option>
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+              <option value="DC">District of Columbia</option>
+            </select>
+          </div>
 
-        <button id="speakButton" class="hidden w-9 h-9 ml-8 mt-1">
-          <img id="speakImageButton" class="" src="images/volume.png" alt="">
-        </button>
-  
-        <button
-          id="startOver"
-          class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ml-7 mt-2 hidden"
-        >
-          Go Again to Be Citizenship-Ready!
-        </button>
+          <!-- Text Answer Container -->
+          <div id="textAnswerContainer" class="hidden w-full p-6 bg-blue-50 rounded-xl border border-blue-100 text-center shadow-sm">
+            <p class="text-blue-400 text-xs uppercase tracking-wider font-bold mb-2">Answer</p>
+            <p id="textAnswerContent" class="text-xl md:text-2xl font-bold text-slate-800 leading-relaxed">
+              <!-- Answer text will go here -->
+            </p>
+            <p id="stateNameDisplay" class="mt-2 text-blue-600 font-medium text-sm">
+              <!-- State name -->
+            </p>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex flex-wrap justify-center items-center gap-4 w-full">
+          
+          <button
+            id="previousButton"
+            class="flex-1 min-w-[120px] max-w-[160px] px-6 py-3 rounded-full bg-white text-slate-700 font-semibold border border-slate-200 shadow-sm hover:bg-slate-50 hover:border-slate-300 hover:shadow-md active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            ← Previous
+          </button>
+
+          <button
+            id="speakButton"
+            class="hidden w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center hover:bg-blue-200 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            title="Read Aloud"
+          >
+             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+          </button>
+
+          <button
+            id="nextButton"
+            class="flex-1 min-w-[120px] max-w-[160px] px-6 py-3 rounded-full bg-blue-600 text-white font-semibold shadow-lg shadow-blue-600/30 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-600/40 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Next →
+          </button>
+
+          <button
+            id="startOver"
+            class="hidden w-full max-w-xs px-6 py-3 rounded-full bg-emerald-600 text-white font-bold shadow-lg shadow-emerald-600/30 hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-600/40 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 animate-pulse"
+          >
+            Start Over
+          </button>
+        </div>
+
       </div>
       
-</div>
-
+      <!-- Footer -->
+      <div class="bg-slate-50 p-4 text-center text-slate-400 text-xs">
+        &copy; 2025 Civics Flashcards Project
+      </div>
     </div>
 
     <script src="script.js"></script>

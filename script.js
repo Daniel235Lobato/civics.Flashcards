@@ -3,6 +3,270 @@ document.addEventListener("DOMContentLoaded", function () {
   let nextButtonCount = -1;
   let imageClickCount = 0;
 
+  // State Specific Data
+  // Indices (0-based): 19 (Senators), 42 (Governor), 43 (Capital)
+  // Note: Q23 (Index 22) is Representative which is district specific, handled generically.
+  const stateAnswers = {
+    AL: {
+      19: "Tommy Tuberville and Katie Britt",
+      42: "Kay Ivey",
+      43: "Montgomery"
+    },
+    AK: {
+      19: "Lisa Murkowski and Dan Sullivan",
+      42: "Mike Dunleavy",
+      43: "Juneau"
+    },
+    AZ: {
+      19: "Kyrsten Sinema and Mark Kelly",
+      42: "Katie Hobbs",
+      43: "Phoenix"
+    },
+    AR: {
+      19: "John Boozman and Tom Cotton",
+      42: "Sarah Huckabee Sanders",
+      43: "Little Rock"
+    },
+    CA: {
+      19: "Alex Padilla and Laphonza Butler",
+      42: "Gavin Newsom",
+      43: "Sacramento"
+    },
+    CO: {
+      19: "Michael Bennet and John Hickenlooper",
+      42: "Jared Polis",
+      43: "Denver"
+    },
+    CT: {
+      19: "Richard Blumenthal and Chris Murphy",
+      42: "Ned Lamont",
+      43: "Hartford"
+    },
+    DE: {
+      19: "Tom Carper and Chris Coons",
+      42: "John Carney",
+      43: "Dover"
+    },
+    FL: {
+      19: "Marco Rubio and Rick Scott",
+      42: "Ron DeSantis",
+      43: "Tallahassee"
+    },
+    GA: {
+      19: "Jon Ossoff and Raphael Warnock",
+      42: "Brian Kemp",
+      43: "Atlanta"
+    },
+    HI: {
+      19: "Brian Schatz and Mazie Hirono",
+      42: "Josh Green",
+      43: "Honolulu"
+    },
+    ID: {
+      19: "Mike Crapo and Jim Risch",
+      42: "Brad Little",
+      43: "Boise"
+    },
+    IL: {
+      19: "Dick Durbin and Tammy Duckworth",
+      42: "J.B. Pritzker",
+      43: "Springfield"
+    },
+    IN: {
+      19: "Todd Young and Mike Braun",
+      42: "Eric Holcomb",
+      43: "Indianapolis"
+    },
+    IA: {
+      19: "Chuck Grassley and Joni Ernst",
+      42: "Kim Reynolds",
+      43: "Des Moines"
+    },
+    KS: {
+      19: "Jerry Moran and Roger Marshall",
+      42: "Laura Kelly",
+      43: "Topeka"
+    },
+    KY: {
+      19: "Mitch McConnell and Rand Paul",
+      42: "Andy Beshear",
+      43: "Frankfort"
+    },
+    LA: {
+      19: "Bill Cassidy and John Kennedy",
+      42: "Jeff Landry",
+      43: "Baton Rouge"
+    },
+    ME: {
+      19: "Susan Collins and Angus King",
+      42: "Janet Mills",
+      43: "Augusta"
+    },
+    MD: {
+      19: "Ben Cardin and Chris Van Hollen",
+      42: "Wes Moore",
+      43: "Annapolis"
+    },
+    MA: {
+      19: "Elizabeth Warren and Ed Markey",
+      42: "Maura Healey",
+      43: "Boston"
+    },
+    MI: {
+      19: "Debbie Stabenow and Gary Peters",
+      42: "Gretchen Whitmer",
+      43: "Lansing"
+    },
+    MN: {
+      19: "Amy Klobuchar and Tina Smith",
+      42: "Tim Walz",
+      43: "Saint Paul"
+    },
+    MS: {
+      19: "Roger Wicker and Cindy Hyde-Smith",
+      42: "Tate Reeves",
+      43: "Jackson"
+    },
+    MO: {
+      19: "Josh Hawley and Eric Schmitt",
+      42: "Mike Parson",
+      43: "Jefferson City"
+    },
+    MT: {
+      19: "Jon Tester and Steve Daines",
+      42: "Greg Gianforte",
+      43: "Helena"
+    },
+    NE: {
+      19: "Deb Fischer and Pete Ricketts",
+      42: "Jim Pillen",
+      43: "Lincoln"
+    },
+    NV: {
+      19: "Catherine Cortez Masto and Jacky Rosen",
+      42: "Joe Lombardo",
+      43: "Carson City"
+    },
+    NH: {
+      19: "Jeanne Shaheen and Maggie Hassan",
+      42: "Chris Sununu",
+      43: "Concord"
+    },
+    NJ: {
+      19: "Cory Booker and George Helmy",
+      42: "Phil Murphy",
+      43: "Trenton"
+    },
+    NM: {
+      19: "Martin Heinrich and Ben Ray Luján",
+      42: "Michelle Lujan Grisham",
+      43: "Santa Fe"
+    },
+    NY: {
+      19: "Chuck Schumer and Kirsten Gillibrand",
+      42: "Kathy Hochul",
+      43: "Albany"
+    },
+    NC: {
+      19: "Thom Tillis and Ted Budd",
+      42: "Roy Cooper",
+      43: "Raleigh"
+    },
+    ND: {
+      19: "John Hoeven and Kevin Cramer",
+      42: "Doug Burgum",
+      43: "Bismarck"
+    },
+    OH: {
+      19: "Sherrod Brown and J.D. Vance",
+      42: "Mike DeWine",
+      43: "Columbus"
+    },
+    OK: {
+      19: "James Lankford and Markwayne Mullin",
+      42: "Kevin Stitt",
+      43: "Oklahoma City"
+    },
+    OR: {
+      19: "Ron Wyden and Jeff Merkley",
+      42: "Tina Kotek",
+      43: "Salem"
+    },
+    PA: {
+      19: "Bob Casey Jr. and John Fetterman",
+      42: "Josh Shapiro",
+      43: "Harrisburg"
+    },
+    RI: {
+      19: "Jack Reed and Sheldon Whitehouse",
+      42: "Dan McKee",
+      43: "Providence"
+    },
+    SC: {
+      19: "Lindsey Graham and Tim Scott",
+      42: "Henry McMaster",
+      43: "Columbia"
+    },
+    SD: {
+      19: "John Thune and Mike Rounds",
+      42: "Kristi Noem",
+      43: "Pierre"
+    },
+    TN: {
+      19: "Marsha Blackburn and Bill Hagerty",
+      42: "Bill Lee",
+      43: "Nashville"
+    },
+    TX: {
+      19: "John Cornyn and Ted Cruz",
+      42: "Greg Abbott",
+      43: "Austin"
+    },
+    UT: {
+      19: "Mike Lee and Mitt Romney",
+      42: "Spencer Cox",
+      43: "Salt Lake City"
+    },
+    VT: {
+      19: "Bernie Sanders and Peter Welch",
+      42: "Phil Scott",
+      43: "Montpelier"
+    },
+    VA: {
+      19: "Mark Warner and Tim Kaine",
+      42: "Glenn Youngkin",
+      43: "Richmond"
+    },
+    WA: {
+      19: "Patty Murray and Maria Cantwell",
+      42: "Jay Inslee",
+      43: "Olympia"
+    },
+    WV: {
+      19: "Joe Manchin and Shelley Moore Capito",
+      42: "Jim Justice",
+      43: "Charleston"
+    },
+    WI: {
+      19: "Ron Johnson and Tammy Baldwin",
+      42: "Tony Evers",
+      43: "Madison"
+    },
+    WY: {
+      19: "John Barrasso and Cynthia Lummis",
+      42: "Mark Gordon",
+      43: "Cheyenne"
+    },
+    DC: {
+      19: "No Senators (District of Columbia)",
+      42: "Muriel Bowser (Mayor)",
+      43: "N/A"
+    }
+  };
+
+  const stateSpecificIndices = [19, 42, 43];
+  const representativeIndex = 22; // Special case for generic message
+
   let cardsAnswer = [
     "images/flashcard_001_A.jpg",
     "images/flashcard_002_A.jpg",
@@ -218,7 +482,53 @@ document.addEventListener("DOMContentLoaded", function () {
   const welcomeCard = document.getElementById("welcomeCardImage");
   const previousButton = document.getElementById("previousButton");
   const speakButton = document.getElementById("speakButton");
-  const speakImageButton = document.getElementById("speakImageButton");
+  
+  // New Elements
+  const stateSelector = document.getElementById("stateSelector");
+  const textAnswerContainer = document.getElementById("textAnswerContainer");
+  const textAnswerContent = document.getElementById("textAnswerContent");
+  const stateNameDisplay = document.getElementById("stateNameDisplay");
+
+  const stateSelectorContainer = document.getElementById("stateSelectorContainer");
+
+  function hideTextAnswer() {
+    textAnswerContainer.classList.add("hidden");
+  }
+
+  function showTextAnswer(text, stateName) {
+    textAnswerContent.textContent = text;
+    stateNameDisplay.textContent = stateName ? `(${stateName})` : "";
+    textAnswerContainer.classList.remove("hidden");
+  }
+
+  function updateStateSelectorVisibility(index) {
+    if (stateSpecificIndices.includes(index) || index === representativeIndex) {
+      stateSelectorContainer.classList.remove("hidden");
+    } else {
+      stateSelectorContainer.classList.add("hidden");
+    }
+  }
+
+  function updateAnswerDisplay() {
+      const selectedState = stateSelector.value;
+      
+      if (nextButtonCount === representativeIndex) {
+         // Special case for Representative (District specific)
+         showTextAnswer("Answers will vary. \n(Residents of territories with nonvoting Delegates or Resident Commissioners may provide the name of that Delegate or Commissioner. Also acceptable is any statement that the territory has no (voting) Representatives in Congress.)", selectedState ? stateSelector.options[stateSelector.selectedIndex].text : "");
+      } else if (selectedState && stateAnswers[selectedState] && stateAnswers[selectedState][nextButtonCount]) {
+        // Show state specific answer
+        showTextAnswer(stateAnswers[selectedState][nextButtonCount], stateSelector.options[stateSelector.selectedIndex].text);
+      } else if (!selectedState) {
+        // Prompt to select state
+        showTextAnswer("Please select your state above to see the correct answer.", "");
+      } else {
+         // Fallback if data missing
+         cardImage.src = cardsAnswer[nextButtonCount];
+         // If we fell back to image, hide text container
+         hideTextAnswer();
+         cardImage.classList.remove("invisible");
+      }
+  }
 
   nextButton.addEventListener("click", function () {
     nextButtonCount++;
@@ -228,6 +538,9 @@ document.addEventListener("DOMContentLoaded", function () {
     speakButton.classList.remove("hidden");
     previousButton.classList.add("ml-10");
     face = "Question";
+    hideTextAnswer(); // Reset text answer on new card
+    updateStateSelectorVisibility(nextButtonCount);
+    
     console.log(nextButtonCount);
     if (nextButtonCount >= 100) {
       startOver.classList.remove("hidden");
@@ -236,17 +549,44 @@ document.addEventListener("DOMContentLoaded", function () {
       speakButton.classList.add("hidden");
       startOverCardImage.classList.remove("hidden");
       cardImage.classList.add("hidden");
+      hideTextAnswer();
+      stateSelectorContainer.classList.add("hidden");
     }
   });
 
   cardImage.addEventListener("click", function () {
     imageClickCount++;
     if (imageClickCount % 2 === 0) {
+      // Showing Question
       cardImage.src = cardsQuestion[nextButtonCount];
       face = "Question";
+      hideTextAnswer();
     } else {
-      cardImage.src = cardsAnswer[nextButtonCount];
+      // Showing Answer
       face = "Answer";
+      
+      // Check if it's a state specific question
+      if (stateSpecificIndices.includes(nextButtonCount) || nextButtonCount === representativeIndex) {
+        updateAnswerDisplay();
+      } else {
+        // Normal image answer
+        cardImage.src = cardsAnswer[nextButtonCount];
+      }
+    }
+  });
+
+  // Also handle clicks on the text container to flip back to question
+  textAnswerContainer.addEventListener("click", function() {
+    imageClickCount++;
+    // Should go back to question
+    cardImage.src = cardsQuestion[nextButtonCount];
+    face = "Question";
+    hideTextAnswer();
+  });
+
+  stateSelector.addEventListener("change", function() {
+    if (face === "Answer") {
+      updateAnswerDisplay();
     }
   });
 
@@ -255,6 +595,8 @@ document.addEventListener("DOMContentLoaded", function () {
       nextButtonCount--;
       cardImage.src = cardsQuestion[nextButtonCount];
       face = "Question";
+      hideTextAnswer();
+      updateStateSelectorVisibility(nextButtonCount);
     } else {
       console.log("Already at the first question. Can't go back further.");
     }
@@ -286,5 +628,8 @@ document.addEventListener("DOMContentLoaded", function () {
     startOverCardImage.classList.add("hidden");
     speakButton.classList.add("hidden");
     previousButton.classList.remove("ml-10");
+    hideTextAnswer();
+    stateSelector.selectedIndex = 0; // Reset selector
+    stateSelectorContainer.classList.add("hidden");
   });
 });
